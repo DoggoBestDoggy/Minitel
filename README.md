@@ -8,3 +8,8 @@ Installer les dépendances :
 - pip3 install psutil
 - python -m pip install psutil
 - brew install newt ou apt install whiptail
+
+
+Pour arreter le processus de manière  forcer :
+
+CTRL + C
