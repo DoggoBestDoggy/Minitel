@@ -3,11 +3,13 @@ import resource
 import platform
 import psutil
 from datetime import datetime as dt
-
+import os
+import ctypes
 
 #-----------------fonction que je vais re utiliser  ------------------#
 
 # fonction qui convertit un grand nombre d'octets dans un format à l'échelle
+
 
 def get_size(bytes, suffix="B"):
     """

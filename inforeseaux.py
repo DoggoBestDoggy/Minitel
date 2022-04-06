@@ -1,13 +1,13 @@
-import pkg_resources
-import resource
-import platform
-import psutil
+import socket
+import subprocess
+import sys
 from datetime import datetime as dt
-
+import psutil
 
 #-----------------fonction que je vais re utiliser  ------------------#
 
 # fonction qui convertit un grand nombre d'octets dans un format à l'échelle
+
 
 def get_size(bytes, suffix="B"):
     """
@@ -31,18 +31,53 @@ def void():
 #---------------- information réseaux -------------------#
 
 
-# Network information
-print("="*40, "Information Réseaux", "="*40)
-# get all network interfaces (virtual and physical)
-if_addrs = psutil.net_if_addrs()
-for interface_name, interface_addresses in if_addrs.items():
-    for address in interface_addresses:
-        print(f"=== Interface: {interface_name} ===")
-        if str(address.family) == 'AddressFamily.AF_INET':
-            print(f"  IP Address: {address.address}")
-            print(f"  Netmask: {address.netmask}")
-            print(f"  Broadcast IP: {address.broadcast}")
-        elif str(address.family) == 'AddressFamily.AF_PACKET':
-            print(f"  MAC Address: {address.address}")
-            print(f"  Netmask: {address.netmask}")
-            print(f"  Broadcast MAC: {address.broadcast}")
+print("\n", "="*40, "Information Réseaux", "="*40, "\n")
+
+print("\n", "-"*30, "Informations IP", "-"*30, "\n")
+
+#---------------- information IP -------------------#
+
+
+def extract_ip():
+    st = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        st.connect(('10.255.255.255', 1))
+        IP = st.getsockname()[0]
+    except Exception:
+        IP = '127.0.0.1'
+    finally:
+        st.close()
+    return IP
+
+
+print("IP :", extract_ip())
+
+#---------------- information Interface -------------------#
+
+print("\n", "-"*30, "Informations Interface", "-"*30, "\n")
+
+
+def interface():
+    if_addrs = psutil.net_if_addrs()
+    for interface_name, interface_addresses in if_addrs.items():
+        for address in interface_addresses:
+            print(f"=== Interface: {interface_name} ===")
+
+
+interface()
+
+#---------------- information Pacquets -------------------#
+
+print("\n", "-"*30, "Informations Pacquets Activé", "-"*30, "\n")
+
+
+def pathinstalled():
+
+    reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
+    installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
+
+    if 'requests' in installed_packages:
+        print("paquets activé :", installed_packages, "\n")
+
+
+pathinstalled()
