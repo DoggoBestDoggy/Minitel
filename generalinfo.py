@@ -9,7 +9,6 @@ from datetime import datetime as dt
 
 # fonction qui convertit un grand nombre d'octets dans un format à l'échelle
 
-
 def get_size(bytes, suffix="B"):
     """
     Scale bytes to its proper format
@@ -30,7 +29,7 @@ def void():
     print("\n")
 
 
-print("\n", "="*40, "Information Générale Système", "="*40, "\n")
+print("\n", "="*40, "Information Générale", "="*40, "\n")
 
 #---------------- info sur les versions -------------------#
 
@@ -146,5 +145,3 @@ def packagelist():
 
 
 packagelist()
-
-
