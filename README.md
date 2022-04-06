@@ -9,7 +9,8 @@ Installer les dépendances :
 - python -m pip install psutil
 - brew install newt ou apt install whiptail
 
+Pour executer l'interface faire un : ./menu.sh
 
-Pour arreter le processus de manière  forcer :
+Pour arreter le processus de manière forcer :
 
 CTRL + C

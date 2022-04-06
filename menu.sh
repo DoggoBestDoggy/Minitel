@@ -11,7 +11,7 @@ function advanceMenu(){
 
     1) 
         echo "Informations générale"
-        whiptail --title "" --msgbox "Voici les informations générales de la machine" 8 45
+        whiptail --title "" --msgbox "Voici les informations générale" 8 45
         python3 generalinfo.py
     ;; 
 
@@ -19,13 +19,13 @@ function advanceMenu(){
     2) 
         echo "Informations Réseaux"
         whiptail --title "" --msgbox "Voici les informations Réseaux " 8 45
-
+        python3 inforeseaux.py
     ;; 
     
     3) 
         echo "Informations Processus"
-        whiptail --title "" --msgbox "Voici les informations du Processus " 8 45
-
+        whiptail --title "" --msgbox "Voici les informations Processus " 8 45
+        python3 STOP.py
     ;; 
     
     esac
