@@ -1,9 +1,11 @@
-import sys
 
-x = 1
-
-while x >= 1:
-    print(x)    
-    x= x + 1
-    if x >= 7000:
-        sys.exit()
+import psutil
+# Iterate over all running process
+for proc in psutil.process_iter():
+    try:
+        # Get process name & pid from process object.
+        processName = proc.name()
+        processID = proc.pid
+        print("Name :", processName, "--", "PID :", processID)
+    except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+        pass
